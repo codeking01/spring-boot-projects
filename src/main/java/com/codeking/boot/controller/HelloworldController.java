@@ -1,4 +1,4 @@
-package com.codeking.boot1.controller;
+package com.codeking.boot.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloworldController {
     @RequestMapping("/hello")
     public String hello() {
-        return "hello!!!!";
+        return "hello!!!!答复";
     }
 }
