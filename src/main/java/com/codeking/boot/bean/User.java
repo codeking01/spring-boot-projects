@@ -6,11 +6,21 @@ package com.codeking.boot.bean;
  */
 public class User {
     private String userName;
+    private Pet pet;
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
+                ", pet=" + pet +
                 '}';
     }
 

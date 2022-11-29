@@ -1,6 +1,8 @@
 package com.codeking.boot;
 
+import com.codeking.boot.bean.Pet;
 import com.codeking.boot.bean.User;
+import com.codeking.boot.config.MyConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -47,9 +49,23 @@ public class MainApplication {
         ConfigurableApplicationContext run = SpringApplication.run(MainApplication.class, args);
         User user02 = run.getBean("user02", User.class);
         User user01 = run.getBean("user02", User.class);
-        System.out.println(user02);
-        System.out.println(user01);
+        System.out.println("user02:"+user02 );
+        System.out.println("user01:"+user01);
         System.out.println(user01==user02);
+        System.out.println("**************");
+        MyConfig bean = run.getBean(MyConfig.class);
+        User user = bean.user01();
+        User user1 = bean.user01();
+        System.out.println("user:"+user);
+        System.out.println("user1:"+user1);
+        System.out.println(user==user1);
+        System.out.println("**************");
+        Pet tom = run.getBean("tom", Pet.class);
+        Pet tom1 = run.getBean(Pet.class);
+        System.out.println("宠物.."+(user1.getPet()==tom));
+        System.out.println("宠物.."+(user1.getPet()==tom1));
+
+
         //String[] beanDefinitionNames = run.getBeanDefinitionNames();
         //for (String beanDefinitionName : beanDefinitionNames) {
         //    System.out.println("beanDefinitionName:"+beanDefinitionName);
