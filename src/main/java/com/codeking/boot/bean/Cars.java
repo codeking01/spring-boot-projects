@@ -1,0 +1,52 @@
+package com.codeking.boot.bean;
+
+/**
+ * @author : codeking
+ * @create : 2022/12/3 21:30
+ */
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+/**
+ * 只有在容器(@component)中的组件，才会拥有SpringBoot提供的强大功能
+ */
+@Component
+//@ConfigurationProperties(prefix = "mycar")
+@ConfigurationProperties(prefix = "my-car")
+public class Cars {
+    private String brand;
+    private Integer price;
+
+    //public Cars() {
+    //}
+    //
+    //public Cars(String brand, Integer price) {
+    //    this.brand = brand;
+    //    this.price = price;
+    //}
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "brand='" + brand + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
+}
