@@ -1,13 +1,12 @@
 package com.codeking.boot.config;
 
-import com.codeking.boot.bean.Cars;
+import com.codeking.boot.bean.Car;
 import com.codeking.boot.bean.Pet;
 import com.codeking.boot.bean.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -24,28 +23,29 @@ import org.springframework.context.annotation.Configuration;
  * * Full(proxyBeanMethods = true)、【保证每个@Bean方法被调用多少次返回的组件;
  * * Lite(proxyBeanMethods = false)【每个@Bean方法被调用多少次返回的组件都是新
  * * 组件依赖必须使用Full模式默认。其他默认是否Lite模式
- *
- *
+ * <p>
+ * <p>
  * ------
  * 组件扫描是有顺序要求的，从上到下扫面！！！
  * ConditionalOnBean(name="组件名字")
  * 满足条件才会注入这个组件
  * Conditional有很多，可以查看实现或者继承类
- *
  */
+@Slf4j
 @Configuration(proxyBeanMethods = true)
-//@EnableConfigurationProperties(Cars.class)
+@EnableConfigurationProperties(Car.class)
 public class MyConfig {
-
     @Bean("tom")
-    public Pet tomcatPet(){
+    public Pet tomcatPet() {
         return new Pet("tomcat");
     }
+
     //组件扫描是有顺序要求的，从上到下扫面！！！
     @Bean("user02")
-    @ConditionalOnBean(name="tom")
+    @ConditionalOnBean(name = "tom")
     //@ConditionalOnMissingBean(name="jack")
-    public User user01(){
+    public User user01() {
+        log.info("log进来了！！!");
         User user1 = new User("张三");
         user1.setPet(tomcatPet());
         return user1;

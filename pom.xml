@@ -32,6 +32,18 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- 引入ombok     -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+        <!-- dev-tools 自动重启，付费的jRebel 可以热更新热部署····  -->
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework.boot</groupId> -->
+        <!--     <artifactId>spring-boot-devtools</artifactId> -->
+        <!--     <optional>true</optional> -->
+        <!-- </dependency> -->
     </dependencies>
 
     <!-- 插件 -->

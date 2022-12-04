@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 /**
  * 只有在容器(@component)中的组件，才会拥有SpringBoot提供的强大功能
  */
-@Component
+//@Component
 //@ConfigurationProperties(prefix = "mycar")
 @ConfigurationProperties(prefix = "my-car")
-public class Cars {
+public class Car {
     private String brand;
     private Integer price;
 
-    //public Cars() {
+    //public Car() {
     //}
     //
-    //public Cars(String brand, Integer price) {
+    //public Car(String brand, Integer price) {
     //    this.brand = brand;
     //    this.price = price;
     //}
@@ -43,7 +43,7 @@ public class Cars {
     }
     @Override
     public String toString() {
-        return "Cars{" +
+        return "Car{" +
                 "brand='" + brand + '\'' +
                 ", price=" + price +
                 '}';

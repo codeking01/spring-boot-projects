@@ -1,9 +1,11 @@
 package com.codeking.boot;
 
 import ch.qos.logback.classic.db.DBHelper;
+import com.codeking.boot.bean.Car;
 import com.codeking.boot.bean.Pet;
 import com.codeking.boot.bean.User;
 import com.codeking.boot.config.MyConfig;
+import org.apache.catalina.webresources.Cache;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -34,6 +36,26 @@ import org.springframework.context.annotation.ImportResource;
  * ◦ 无需以前的包扫描配置
  * °想要改变扫描路径，@SpringBootApplication(scanBasePackages=com.atguigu")
  * ■ 或者@ComponentScan 指定扫描路径
+ * @SpringBootApplication //等同于
+ * //@SpringBootConfiguration
+ * //@EnableAutoConfiguration
+ * //@ComponentScan("com.codeking.boot")
+ * <p>
+ * • 自动配好SpringMVC
+ * °引入SpringMVC全套组件
+ * 。自动配好SpringMVC常用组件 （功能）
+ * • 自动配好Web常见功能，如：字符编码问题
+ * 。SpringBoot帮我们配置好了所有web开发的常见场景
+ * • 默认的包结构
+ * o 主程序所在包及其下面的所有子包里面的组件都会被默认扫描进来
+ * ◦ 无需以前的包扫描配置
+ * °想要改变扫描路径，@SpringBootApplication(scanBasePackages=com.atguigu")
+ * ■ 或者@ComponentScan 指定扫描路径
+ * <p>
+ * * 4、@Impont({User.class,DBHelper.class})
+ * * 给容器中自动创建出这两个类型的组件、默认组件的名字就是全类名
+ * -----
+ * @@ImportResource("classpath:beans.xml") 这个注解 原生配置文件（xml）引入
  */
 
 /**
@@ -71,8 +93,8 @@ import org.springframework.context.annotation.ImportResource;
  * 。SpringBoot所有的自动配置功能都在 spring-boot-autoconfigure 包里面
  *
  */
-//@Import({User.class, DBHelper.class})
-//@ImportResource("classpath:beans.xml")
+@Import({User.class, DBHelper.class})
+@ImportResource("classpath:beans.xml")
 @SpringBootApplication
 public class MainApplication {
     public static void main(String[] args) {
@@ -111,9 +133,18 @@ public class MainApplication {
         //System.out.println("user02:"+user02);
 
         // 检查配置问价导入是否成功
-        boolean haha=run.containsBean("haha");
-        boolean hehe=run.containsBean("hehe");
-        System.out.println("haha:"+haha);
-        System.out.println("hehe:"+hehe);
+        boolean haha = run.containsBean("haha");
+        boolean hehe = run.containsBean("hehe");
+        System.out.println("haha:" + haha);
+        System.out.println("hehe:" + hehe);
+        System.out.println("************");
+        Car car =  run.getBean(Car.class);
+        System.out.println(car.getBrand()+"**"+car.getPrice());
+        System.out.println("************");
+        int beanDefinitionCount = run.getBeanDefinitionCount();
+        System.out.println(beanDefinitionCount);
+        System.out.println("************");
+        String[] beanNamesForType = run.getBeanNamesForType(Cache.class);
+        System.out.println(beanNamesForType.length);
     }
 }
